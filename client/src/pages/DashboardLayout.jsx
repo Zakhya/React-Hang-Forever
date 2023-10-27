@@ -5,6 +5,7 @@ import { createContext, useContext, useState } from "react";
 import { checkDefaultTheme } from "../App";
 import customFetch from "../utils/customFetch";
 import { toast } from "react-toastify";
+import { redirect } from "react-router-dom";
 
 export const loader = async () => {
   try {

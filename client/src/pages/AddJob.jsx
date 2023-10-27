@@ -1,8 +1,8 @@
-import { FormRow, FormRowSelect } from "../components";
+import { FormRow, FormRowSelect, SubmitBtn } from "../components";
 import Wrapper from "../assets/wrappers/DashboardFormPage";
 import { useOutletContext } from "react-router-dom";
 import { JOB_STATUS, JOB_TYPE } from "../../../utils/constants";
-import { Form, useNavigation, redirect } from "react-router-dom";
+import { Form, redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 import customFetch from "../utils/customFetch";
 
@@ -12,8 +12,8 @@ export const action = async ({ request }) => {
 
   try {
     await customFetch.post("/jobs", data);
-    toast.success("Registration Succefull");
-    return redirect("/Dashboard");
+    toast.success("new job added");
+    return redirect("all-jobs");
   } catch (error) {
     toast.error(error?.response?.data?.msg);
     console.log(error);
@@ -21,14 +21,12 @@ export const action = async ({ request }) => {
   }
 };
 
-const AllJobs = () => {
+const AddJobs = () => {
   const { user } = useOutletContext();
-  const navigation = useNavigation();
-  const isSubmitting = navigation.state === "submitting";
 
   return (
     <Wrapper>
-      <Form>
+      <Form method="post" className="form">
         <h4 className="form-title"></h4>
         <div className="form-center">
           <FormRow type="text" name="position" />
@@ -51,17 +49,11 @@ const AllJobs = () => {
             defaultValue={JOB_TYPE.FULL_TIME}
             list={Object.values(JOB_TYPE)}
           />
-          <button
-            type="submit"
-            className="btn btn-block form-btn"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? "Submitting" : "Submit"}
-          </button>
+          <SubmitBtn formBtn />
         </div>
       </Form>
     </Wrapper>
   );
 };
 
-export default AllJobs;
+export default AddJobs;

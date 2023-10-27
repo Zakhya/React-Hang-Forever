@@ -46,8 +46,8 @@ export const validateIdParam = withValidationErrors([
     if (!isValidId) throw new Error("invalid MongopDb ID");
     const job = await Job.findById(value);
     if (!job) throw new Error(`no job with id ${value}`);
-    const isAdmin = req.usre.role === "admin";
-    const isOwner = req.user.userId === bob.createdBy.toSting();
+    const isAdmin = req.user.role === "admin";
+    const isOwner = req.user.userId === job.createdBy.toString();
     if (!isAdmin && !isOwner) throw new UnauthenticatedError("not authorized");
   }),
 ]);
