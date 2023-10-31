@@ -18,18 +18,16 @@ export const getApplicationStats = async (req, res) => {
 export const updateUser = async (req, res) => {
   const newUser = { ...req.body };
   delete newUser.password;
-
   if (req.file) {
     const file = formatImage(req.file);
     const response = await cloudinary.v2.uploader.upload(file);
-
     newUser.avatar = response.secure_url;
     newUser.avatarPublicId = response.public_id;
   }
   const updatedUser = await User.findByIdAndUpdate(req.user.userId, newUser);
+
   if (req.file && updatedUser.avatarPublicId) {
     await cloudinary.v2.uploader.destroy(updatedUser.avatarPublicId);
   }
-
   res.status(200).json({ msg: "update user" });
 };
