@@ -12,6 +12,7 @@ import {
   Profile,
   Admin,
   EditJob,
+  Game,
 } from "./pages";
 
 import { action as registerAction } from "./pages/Register";
@@ -27,7 +28,7 @@ import { action as profileAction } from "./pages/Profile";
 import { loader as statLoader } from "./pages/Stats";
 
 export const checkDefaultTheme = () => {
-  const isDarkTheme = localStorage.getItem("darkTheme") === "true";
+  const isDarkTheme = localStorage.getItem("dark-theme") === "true";
   document.body.classList.toggle("dark-theme", isDarkTheme);
   return isDarkTheme;
 };
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
             index: true,
             element: <AddJob />,
             action: addJobAction,
+          },
+          {
+            path: "game",
+            element: <Game />,
           },
           {
             path: "stats",

@@ -6,6 +6,7 @@ import { checkDefaultTheme } from "../App";
 import customFetch from "../utils/customFetch";
 import { toast } from "react-toastify";
 import { redirect } from "react-router-dom";
+// import { themes } from "../utils/themes";
 
 export const loader = async () => {
   try {
@@ -19,6 +20,18 @@ export const loader = async () => {
 const DashboardContext = createContext();
 
 const DashboardLayout = () => {
+  // const themeKeys = Object.keys(themes);
+  // const totalThemes = themeKeys.length;
+
+  // const [themeIndex, setThemeIndex] = useState(0);
+  // const [theme, setTheme] = useState(themes[themeKeys[themeIndex]]);
+
+  // function cycleThemes() {
+  //   const nextIndex = (themeIndex + 1) % totalThemes; // Calculate the next theme index
+  //   setTheme(themes[themeKeys[nextIndex]]); // Set the next theme
+  //   setThemeIndex(nextIndex); // Update the current theme index
+  // }
+
   const { user } = useLoaderData();
   const navigate = useNavigate();
   const [showSidebar, setShowSidebar] = useState(false);
@@ -28,7 +41,7 @@ const DashboardLayout = () => {
     const newDarkTheme = !isDarkTheme;
     setIsDarkTheme(newDarkTheme);
     document.body.classList.toggle("dark-theme", newDarkTheme);
-    localStorage.setItem("darkTheme", newDarkTheme);
+    localStorage.setItem("dark-theme", newDarkTheme);
     console.log("toggle");
   };
 
