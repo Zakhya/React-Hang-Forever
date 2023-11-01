@@ -1,7 +1,7 @@
 import React from "react";
 
-const Word = () => {
-  return <div>Word</div>;
+const Word = ({ puzzle }) => {
+  return <div>{puzzle}</div>;
 };
 
 export default Word;

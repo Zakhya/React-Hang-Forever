@@ -77,10 +77,14 @@ html {
 }
 
 .dark-theme {
-  --text-color: var(--dark-mode-text-color);
+  /* --text-color: var(--dark-mode-text-color);
   --background-color: var(--dark-mode-bg-color);
   --text-secondary-color: var(--dark-mode-text-secondary-color);
-  --background-secondary-color: var(--dark-mode-bg-secondary-color);
+  --background-secondary-color: var(--dark-mode-bg-secondary-color); */
+  --text-color: var(--tundra-theme-text-color);
+  --background-color: var(--arctic-background);
+  --text-secondary-color: var(--dark-mode-text-secondary-color);
+  --background-secondary-color: var(--arctic-background-secondary);
 }
 
 .tundra-theme {
